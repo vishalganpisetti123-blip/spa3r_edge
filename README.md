@@ -64,6 +64,8 @@ bash scripts/train_vlm_sft.sh
 
 ## Evaluation
 
+We provide pre-trained weights for [Spa3R](https://huggingface.co/hustvl/Spa3-VLM/blob/main/spa3r.ckpt) and [Spa3-VLM on VSI-590K](https://huggingface.co/hustvl/Spa3-VLM/tree/main/spa3_vlm) on Hugging Face.
+
 To evaluate Spa3-VLM on spatial reasoning benchmarks:
 
 ```
