@@ -1,0 +1,262 @@
+[
+  {
+    "scene_id": "scene0000_00",
+    "prompt": "a small wooden chair in the corner",
+    "gt_box_3d": [
+      1.5,
+      -2.1,
+      0.5,
+      0.4,
+      0.4,
+      0.9
+    ],
+    "cache_path": "cached_3d_features/sample_0.pt"
+  },
+  {
+    "scene_id": "scene0000_00",
+    "prompt": "the large round table in the middle of the room",
+    "gt_box_3d": [
+      0.0,
+      0.0,
+      0.7,
+      1.2,
+      1.2,
+      0.1
+    ],
+    "cache_path": "cached_3d_features/sample_1.pt"
+  },
+  {
+    "scene_id": "scene0000_01",
+    "prompt": "a red sofa facing the tv",
+    "gt_box_3d": [
+      2.0,
+      1.0,
+      0.4,
+      2.0,
+      0.8,
+      0.8
+    ],
+    "cache_path": "cached_3d_features/sample_2.pt"
+  },
+  {
+    "scene_id": "scene0000_01",
+    "prompt": "the television on the wall",
+    "gt_box_3d": [
+      -1.0,
+      1.0,
+      1.5,
+      1.5,
+      0.1,
+      0.9
+    ],
+    "cache_path": "cached_3d_features/sample_3.pt"
+  },
+  {
+    "scene_id": "scene0001_00",
+    "prompt": "a tall bookshelf near the door",
+    "gt_box_3d": [
+      3.0,
+      -1.5,
+      1.0,
+      0.8,
+      0.4,
+      2.0
+    ],
+    "cache_path": "cached_3d_features/sample_4.pt"
+  },
+  {
+    "scene_id": "scene0001_00",
+    "prompt": "a laptop on the desk",
+    "gt_box_3d": [
+      0.5,
+      0.5,
+      0.8,
+      0.3,
+      0.2,
+      0.05
+    ],
+    "cache_path": "cached_3d_features/sample_5.pt"
+  },
+  {
+    "scene_id": "scene0002_00",
+    "prompt": "a potted plant next to the sofa",
+    "gt_box_3d": [
+      -1.5,
+      -1.5,
+      0.5,
+      0.5,
+      0.5,
+      1.0
+    ],
+    "cache_path": "cached_3d_features/sample_6.pt"
+  },
+  {
+    "scene_id": "scene0002_00",
+    "prompt": "the coffee table in front of the sofa",
+    "gt_box_3d": [
+      0.0,
+      -0.5,
+      0.4,
+      1.0,
+      0.6,
+      0.4
+    ],
+    "cache_path": "cached_3d_features/sample_7.pt"
+  },
+  {
+    "scene_id": "scene0003_00",
+    "prompt": "a white bed with two pillows",
+    "gt_box_3d": [
+      2.0,
+      2.0,
+      0.6,
+      1.5,
+      2.0,
+      0.6
+    ],
+    "cache_path": "cached_3d_features/sample_8.pt"
+  },
+  {
+    "scene_id": "scene0003_00",
+    "prompt": "the nightstand beside the bed",
+    "gt_box_3d": [
+      3.0,
+      2.0,
+      0.5,
+      0.5,
+      0.5,
+      0.5
+    ],
+    "cache_path": "cached_3d_features/sample_9.pt"
+  },
+  {
+    "scene_id": "scene0004_00",
+    "prompt": "a kitchen cabinet above the sink",
+    "gt_box_3d": [
+      -2.0,
+      1.5,
+      2.0,
+      0.8,
+      0.4,
+      0.8
+    ],
+    "cache_path": "cached_3d_features/sample_10.pt"
+  },
+  {
+    "scene_id": "scene0004_00",
+    "prompt": "the kitchen sink",
+    "gt_box_3d": [
+      -2.0,
+      1.5,
+      0.9,
+      0.6,
+      0.5,
+      0.2
+    ],
+    "cache_path": "cached_3d_features/sample_11.pt"
+  },
+  {
+    "scene_id": "scene0005_00",
+    "prompt": "a toilet in the bathroom",
+    "gt_box_3d": [
+      1.0,
+      1.0,
+      0.5,
+      0.4,
+      0.6,
+      0.8
+    ],
+    "cache_path": "cached_3d_features/sample_12.pt"
+  },
+  {
+    "scene_id": "scene0005_00",
+    "prompt": "the bathroom mirror",
+    "gt_box_3d": [
+      1.5,
+      0.0,
+      1.5,
+      0.8,
+      0.1,
+      0.8
+    ],
+    "cache_path": "cached_3d_features/sample_13.pt"
+  },
+  {
+    "scene_id": "scene0006_00",
+    "prompt": "a large window",
+    "gt_box_3d": [
+      -3.0,
+      0.0,
+      1.5,
+      0.1,
+      2.0,
+      1.5
+    ],
+    "cache_path": "cached_3d_features/sample_14.pt"
+  },
+  {
+    "scene_id": "scene0006_00",
+    "prompt": "a dining chair by the window",
+    "gt_box_3d": [
+      -2.0,
+      -0.5,
+      0.5,
+      0.4,
+      0.4,
+      0.9
+    ],
+    "cache_path": "cached_3d_features/sample_15.pt"
+  },
+  {
+    "scene_id": "scene0007_00",
+    "prompt": "a black office chair",
+    "gt_box_3d": [
+      0.5,
+      0.5,
+      0.5,
+      0.6,
+      0.6,
+      1.0
+    ],
+    "cache_path": "cached_3d_features/sample_16.pt"
+  },
+  {
+    "scene_id": "scene0007_00",
+    "prompt": "the office desk",
+    "gt_box_3d": [
+      1.0,
+      1.0,
+      0.8,
+      1.5,
+      0.8,
+      0.1
+    ],
+    "cache_path": "cached_3d_features/sample_17.pt"
+  },
+  {
+    "scene_id": "scene0008_00",
+    "prompt": "a trash can under the desk",
+    "gt_box_3d": [
+      1.2,
+      1.2,
+      0.3,
+      0.3,
+      0.3,
+      0.4
+    ],
+    "cache_path": "cached_3d_features/sample_18.pt"
+  },
+  {
+    "scene_id": "scene0008_00",
+    "prompt": "a picture frame on the wall",
+    "gt_box_3d": [
+      2.0,
+      2.0,
+      1.5,
+      0.5,
+      0.05,
+      0.6
+    ],
+    "cache_path": "cached_3d_features/sample_19.pt"
+  }
+]

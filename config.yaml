@@ -1,0 +1,7 @@
+EDGE_HOST: 127.0.0.1
+CLOUD_HOST: 127.0.0.1
+EDGE_PORT: 8080
+CLOUD_PORT: 8080
+EDGE_MODEL: models/spa3r_encoder_int8.onnx
+QUANTIZATION_ENABLED: true
+SIMULATION_NOTE: Simulated edge constraints (CPU-affinity-limited local process), not measured on physical Raspberry Pi 5 hardware.

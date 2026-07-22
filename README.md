@@ -72,6 +72,30 @@ To evaluate Spa3-VLM on spatial reasoning benchmarks:
 bash scripts/eval_vlm.sh
 ```
 
+## Edge-Spa3R local simulation
+
+A lightweight local edge/cloud split simulation is now available for prototyping the distributed architecture described in the project blueprint.
+
+### Included scripts
+
+- [export_encoder.py](export_encoder.py): exports a placeholder PyTorch encoder to an ONNX graph with dynamic view-count axes.
+- [quantize_encoder.py](quantize_encoder.py): quantizes the exported encoder to INT8 with ONNX Runtime.
+- [edge_node.py](edge_node.py): simulates an edge device with CPU affinity, ONNX Runtime inference, and latent transmission over TCP.
+- [cloud_server.py](cloud_server.py): receives the spatial latent tensor and produces a lightweight cloud-side reasoning response.
+- [benchmark/latency_bench.py](benchmark/latency_bench.py): benchmarks FP32 vs. INT8 inference and payload serialization overhead.
+
+### Run locally
+
+```bash
+/Users/vishal/Documents/GitHub/Spa3R/.venv/bin/python export_encoder.py
+/Users/vishal/Documents/GitHub/Spa3R/.venv/bin/python quantize_encoder.py
+/Users/vishal/Documents/GitHub/Spa3R/.venv/bin/python cloud_server.py
+/Users/vishal/Documents/GitHub/Spa3R/.venv/bin/python edge_node.py
+/Users/vishal/Documents/GitHub/Spa3R/.venv/bin/python benchmark/latency_bench.py
+```
+
+> The current implementation is intentionally lightweight and uses a simulated edge process rather than physical Raspberry Pi hardware. The benchmarking output is therefore labeled as a software simulation, not a measured Pi 5 deployment.
+
 ## Citation
 
 If you find our work helpful for your research, please consider starring this repository :star: and citing our work:
