@@ -207,3 +207,9 @@ marimo/_lsp/
 __marimo__/
 
 outputs/
+dataset/
+cached_3d_features/
+
+# Custom ignored items
+models/
+api_log.txt
