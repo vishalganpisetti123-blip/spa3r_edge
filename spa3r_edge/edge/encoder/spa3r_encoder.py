@@ -40,8 +40,11 @@ class Spa3REncoder(BaseEncoder):
             image_tensor = image
             
         if image_tensor.ndim == 3:
+            # (C, H, W) -> (1, 1, C, H, W) for batch and view dimensions
+            image_tensor = image_tensor.unsqueeze(0).unsqueeze(0)
+        elif image_tensor.ndim == 4:
+            # (V, C, H, W) or (B, C, H, W) -> assume (1, V, C, H, W)
             image_tensor = image_tensor.unsqueeze(0)
-            
         device = "cuda" if torch.cuda.is_available() else "cpu"
         self.model.to(device)
         image_tensor = image_tensor.to(device)
