@@ -62,7 +62,11 @@ def test_cloud_api():
         print(f"\n--- QWEN SPATIAL REASONING (Stage C & D) ---")
         print(result.get('qwen_spatial_response', 'N/A'))
         
-        print(f"\nTotal Round-Trip Latency: {result.get('total_latency_ms', 0)} ms")
+        print(f"\n--- LATENCY BREAKDOWN ---")
+        print(f"Local Spa3R Prediction: {result.get('t_adapter_ms', 0):.2f} ms")
+        print(f"Qwen LLM Generation:    {result.get('t_qwen_ms', 0):.2f} ms")
+        print(f"Total Server Time:      {result.get('t_server_ms', 0):.2f} ms")
+        print(f"Total Client Roundtrip: {(end_time - start_time) * 1000:.2f} ms")
         
     except requests.exceptions.ConnectionError:
         print("\n[ERROR] Connection failed. Is the cloud_vlm_api.py server running on port 8000?")

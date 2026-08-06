@@ -46,6 +46,9 @@ def run_benchmark(num_samples=50):
     
     ious = []
     latencies = []
+    t_adapter_all = []
+    t_qwen_all = []
+    t_network_all = []
     
     # Counter for fallback failures (402 errors from Qwen API)
     fallback_count = 0
@@ -81,6 +84,15 @@ def run_benchmark(num_samples=50):
             
             latencies.append(latency)
             
+            t_adapter_ms = result.get('t_adapter_ms', 0)
+            t_qwen_ms = result.get('t_qwen_ms', 0)
+            t_server_ms = result.get('t_server_ms', latency)
+            t_network_ms = max(0, latency - t_server_ms)
+            
+            t_adapter_all.append(t_adapter_ms)
+            t_qwen_all.append(t_qwen_ms)
+            t_network_all.append(t_network_ms)
+            
             # 3. Accuracy Evaluation
             pred_box = result['spa3r_adapter_box']
             iou = calculate_3d_iou(pred_box, gt_box)
@@ -102,6 +114,10 @@ def run_benchmark(num_samples=50):
     mean_latency = np.mean(latencies)
     p95_latency = np.percentile(latencies, 95)
     
+    mean_adapter = np.mean(t_adapter_all)
+    mean_qwen = np.mean(t_qwen_all)
+    mean_network = np.mean(t_network_all)
+    
     ious = np.array(ious)
     miou = np.mean(ious)
     acc_25 = np.mean(ious >= 0.25) * 100
@@ -114,8 +130,13 @@ def run_benchmark(num_samples=50):
     print(f"Binary Payload Size  : {len(binary_payload) / 1024:.2f} KB (Per Request)")
     print(f"API Fallbacks        : {fallback_count} / {len(ious)} (due to API Key Billing)")
     print("-" * 50)
-    print(f"Mean Roundtrip Latency : {mean_latency:.2f} ms")
-    print(f"95th Percentile Latency: {p95_latency:.2f} ms")
+    print(" LATENCY BREAKDOWN ")
+    print(f"Mean Adapter Prediction : {mean_adapter:.2f} ms")
+    print(f"Mean Network Transfer   : {mean_network:.2f} ms")
+    print(f"Mean Qwen LLM Generation: {mean_qwen:.2f} ms")
+    print("-" * 50)
+    print(f"Total Roundtrip Latency : {mean_latency:.2f} ms")
+    print(f"95th Percentile Latency : {p95_latency:.2f} ms")
     print("-" * 50)
     print(f"Mean 3D IoU          : {miou:.4f}")
     print(f"Accuracy @ IoU=0.25  : {acc_25:.1f}%")

@@ -15,7 +15,7 @@ from openai import OpenAI
 API_KEY = os.getenv("QWEN_API_KEY", "NaJMdzYnOT2X3YEamwvYEtPEjhv0pZEf")
 client = OpenAI(
     api_key=API_KEY,
-    base_url="https://api.deepinfra.com/v1/openai" # Or Alibaba Cloud Model Studio Endpoint
+    base_url="https://dashscope-intl.aliyuncs.com/compatible-mode/v1" # Alibaba Cloud Model Studio Endpoint
 )
 
 app = FastAPI(title="Spa3R-VLM Hybrid API Receiver")
@@ -39,7 +39,7 @@ class LocalSpa3RAdapter(torch.nn.Module):
         system_msg = f"Extract the core object name and its spatial modifier (left, right, middle) from the user's prompt. You MUST pick the object ONLY from this exact list: {ALLOWED_CLASSES}. Reply ONLY with the chosen object name and modifier (e.g. 'cabinet on the right'). If you can't find a match, just say 'object in room'."
         try:
             response = client.chat.completions.create(
-                model="Qwen/Qwen2-7B-Instruct", # fast language model
+                model="qwen-plus", # fast language model
                 messages=[
                     {"role": "system", "content": system_msg},
                     {"role": "user", "content": prompt}
@@ -83,7 +83,10 @@ async def predict_3d_spatial(
         
         # Stage B: Extract Object Class + Pass spatial tokens through local Spa3R adapter
         reasoned_prompt = spa3r_adapter.extract_object_class(prompt)
+        
+        adapter_start = time.time()
         estimated_box = spa3r_adapter.predict_bounding_box(spatial_tensor, reasoned_prompt)
+        t_adapter_ms = round((time.time() - adapter_start) * 1000, 2)
         
         # Step C: Inject adapter spatial coordinates into the Qwen text prompt
         spatial_enhanced_prompt = (
@@ -96,21 +99,24 @@ async def predict_3d_spatial(
         )
 
         # Step D: Call Qwen API with spatially conditioned prompt
+        qwen_start = time.time()
         try:
             response = client.chat.completions.create(
-                model="Qwen/Qwen2-7B-Instruct",  # Or preferred Qwen endpoint
+                model="qwen-plus",  # Or preferred Qwen endpoint
                 messages=[
                     {"role": "system", "content": "You are a spatially aware AI agent."},
                     {"role": "user", "content": spatial_enhanced_prompt}
                 ],
-                temperature=0.2
+                temperature=0.2,
+                max_tokens=150
             )
             qwen_reasoning = response.choices[0].message.content
         except Exception as e:
             print(f"Qwen synthesis failed: {e}")
             qwen_reasoning = "Qwen API failed (check billing/key). Falling back to raw coordinates: " + str(estimated_box)
             
-        latency_ms = round((time.time() - start_time) * 1000, 2)
+        t_qwen_ms = round((time.time() - qwen_start) * 1000, 2)
+        t_server_ms = round((time.time() - start_time) * 1000, 2)
 
         return {
             "status": "success",
@@ -118,7 +124,9 @@ async def predict_3d_spatial(
             "parsed_intent": reasoned_prompt,
             "spa3r_adapter_box": estimated_box,
             "qwen_spatial_response": qwen_reasoning,
-            "total_latency_ms": latency_ms
+            "t_adapter_ms": t_adapter_ms,
+            "t_qwen_ms": t_qwen_ms,
+            "t_server_ms": t_server_ms
         }
 
     except Exception as e:
