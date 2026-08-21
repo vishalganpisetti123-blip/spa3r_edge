@@ -12,7 +12,7 @@ from train_3d_adapter import Spa3RAdapter, encode_prompt, ALLOWED_CLASSES
 
 # 1. Initialize Open-Source OpenAI SDK client configured for Qwen API
 from openai import OpenAI
-API_KEY = os.getenv("QWEN_API_KEY", "NaJMdzYnOT2X3YEamwvYEtPEjhv0pZEf")
+API_KEY = os.getenv("QWEN_API_KEY", "")
 client = OpenAI(
     api_key=API_KEY,
     base_url="https://dashscope-intl.aliyuncs.com/compatible-mode/v1" # Alibaba Cloud Model Studio Endpoint

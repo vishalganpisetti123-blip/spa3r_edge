@@ -1,0 +1,9 @@
+# ONNX Export Configuration
+export:
+  batch_size: 1
+  num_views: 1
+  channels: 3
+  height: 224
+  width: 224
+  opset_version: 18
+  output_path: "latents/spa3r_encoder.onnx"

@@ -213,3 +213,10 @@ cached_3d_features/
 # Custom ignored items
 models/
 api_log.txt
+onnx__*
+**/onnx__*
+spa3r_edge/latents/
+spa3r_edge/calibration/
+deploy_bundle/
+.DS_Store
+

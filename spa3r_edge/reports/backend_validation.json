@@ -1,0 +1,13 @@
+{
+  "pytorch_vs_onnx": {
+    "max_error": 5.558948516845703,
+    "pytorch_time_sec": 19.519052028656006,
+    "onnx_time_sec": 12.173337936401367
+  },
+  "onnx_vs_hailo": {
+    "max_error": "Pending compilation"
+  },
+  "pytorch_vs_hailo": {
+    "max_error": "Pending compilation"
+  }
+}

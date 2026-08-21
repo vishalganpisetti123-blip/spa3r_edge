@@ -9,11 +9,14 @@ from edge.encoder.spa3r_encoder import Spa3REncoder
 from edge.memory.memory import SceneMemory
 from edge.utils.messages import ScenePacket
 import numpy as np
+import json
 
 def main():
     dataset = ImageFolderDataset()
-    # checkpoint_path parameter can be adjusted. Assuming None for now since we don't have the weights
-    encoder = Spa3REncoder(checkpoint_path="../spa3r_weights.ckpt")
+    # Provide the path to the weights file if you have one. For now we pass a dummy path or None
+    # Assuming spa3r_weights.ckpt is at the project root for testing
+    pt_backend = Spa3REncoder.build_pytorch_backend(checkpoint_path="../spa3r_weights.ckpt")
+    encoder = Spa3REncoder(backend=pt_backend)
     memory = SceneMemory()
 
     # Ensure latents directory exists
@@ -50,12 +53,27 @@ def main():
         print(f"  Max:   {np.max(packet.latents)}")
         
         # Save latents
-        save_path = f"latents/frame_{frame_count:06d}.npy"
-        np.save(save_path, packet.latents)
+        save_path_npy = f"latents/frame_{frame_count:06d}.npy"
+        save_path_json = f"latents/frame_{frame_count:06d}.json"
+        np.save(save_path_npy, packet.latents)
+        
+        metadata = {
+            "frame_id": packet.frame_id,
+            "dataset": "Mock",
+            "image": str(packet.image_path) if packet.image_path else "mock/frame.jpg",
+            "latent_shape": list(packet.latents.shape),
+            "timestamp": packet.timestamp,
+            "encoder": "Spa3R Edge",
+            "version": "0.1"
+        }
+        
+        with open(save_path_json, "w") as f:
+            json.dump(metadata, f, indent=2)
         
         print("↓")
         print("Saved")
-        print(f"({save_path})\n")
+        print(f"({save_path_npy})")
+        print(f"({save_path_json})\n")
         
         # Add to memory
         memory.add(

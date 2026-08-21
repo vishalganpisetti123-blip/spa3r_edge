@@ -1,0 +1,79 @@
+# Hailo-8 Supported ONNX Operations
+# Source: Hailo Dataflow Compiler SDK Documentation
+# Note: Support for certain ops depends on tensor shapes and datatypes.
+
+supported:
+  - Abs
+  - Add
+  - AveragePool
+  - BatchNormalization
+  - Cast
+  - Ceil
+  - Clip
+  - Concat
+  - Constant
+  - ConstantOfShape
+  - Conv
+  - ConvTranspose
+  - Div
+  - Dropout
+  - Einsum
+  - Equal
+  - Exp
+  - Expand
+  - Flatten
+  - Floor
+  - Gather
+  - GatherElements
+  - Gemm
+  - GlobalAveragePool
+  - GRU
+  - Identity
+  - InstanceNormalization
+  - LayerNormalization
+  - Log
+  - LSTM
+  - MatMul
+  - MaxPool
+  - Mul
+  - Neg
+  - Pad
+  - Pow
+  - Reciprocal
+  - ReduceMax
+  - ReduceMean
+  - ReduceMin
+  - ReduceSum
+  - Relu
+  - Reshape
+  - Round
+  - ScatterElements
+  - Shape
+  - Sigmoid
+  - Slice
+  - Softmax
+  - Split
+  - Sqrt
+  - Squeeze
+  - Sub
+  - Tanh
+  - Tile
+  - Transpose
+  - Unsqueeze
+  - Where
+
+# DSP Accelerated ops (often require specific quantization configs)
+partially_supported:
+  - Cos
+  - Erf
+  - Gelu
+  - Resize
+  - Sin
+  - Tan
+  - Upsample
+
+unsupported:
+  - NonZero
+  - Unique
+  - Loop
+  - If
