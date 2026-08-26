@@ -128,7 +128,7 @@ class Spa3RAdapter(nn.Module):
 
 if __name__ == "__main__":
     dataset = PSFM3DDataset("cached_3d_features/scannet_3d_cached_FULL.json")
-    dataloader = DataLoader(dataset, batch_size=BATCH_SIZE, shuffle=True)
+    dataloader = DataLoader(dataset, batch_size=BATCH_SIZE, shuffle=True, drop_last=True)
 
     model = Spa3RAdapter().to(DEVICE)
     optimizer = torch.optim.AdamW(model.parameters(), lr=LEARNING_RATE)
